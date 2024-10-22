@@ -370,7 +370,7 @@ int uart2_init(void)
     G_UART_2.rb = rt_ringbuffer_create(RT_SERIAL_RB_BUFSZ);
     rt_ringbuffer_reset(G_UART_2.rb);
     /* 创建 serial 线程 */
-    rt_thread_t thread = rt_thread_create("serial2", uart2_rev_thread, RT_NULL, 1024, 22, 10);
+    rt_thread_t thread = rt_thread_create("serial2", uart2_rev_thread, RT_NULL, 1024, 23, 50);
     /* 创建成功则启动线程 */
     if (thread != RT_NULL)
     {

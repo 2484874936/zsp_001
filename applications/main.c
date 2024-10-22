@@ -77,9 +77,9 @@ int main(void)
 //            count = 0;
 //        }
 //        set_led();
-        static uint8_t heart_wait_cnt = 0,heart_error_cnt = 0;
+        static uint32_t heart_wait_cnt = 0,heart_error_cnt = 0;
         heart_wait_cnt ++;
-        if(heart_wait_cnt == 30)
+        if(heart_wait_cnt == 600)
         {
             heart_wait_cnt = 0;
             if(mqtt_heart() == RT_EOK)

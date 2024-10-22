@@ -161,7 +161,7 @@ int MQTT_connect(_Bool init_flag)
 //    m5311_modle.mqtt_port = "9004";
 /*   test url: http://zz.zcczcc.com:9531/test/test_light?topic=866469057983066&str=0100000000000000000000000000000000000000*/
     m5311_modle.mqtt_clientid = IMEI;
-    m5311_modle.keepalive = "120";
+    m5311_modle.keepalive = "150";
     m5311_modle.user = "\"\"";
     m5311_modle.passwd = "\"\"";
     m5311_modle.clean= "1";
@@ -242,7 +242,7 @@ int uart2_data_processing(char *buffer, rt_size_t index)
 #endif
     {
         char *temp;
-        rt_kprintf("uart2 receive:%s",buffer);
+        rt_kprintf("|U2 RX:%s\r\n",buffer);
 
         if(m5311_modle.compare_str != RT_NULL)
         {
@@ -281,8 +281,8 @@ int uart2_data_processing(char *buffer, rt_size_t index)
             location = rt_strstr(buffer,urctopiccompare) - buffer;
             if(location>0 && index >= location + sizeof(urctopiccompare)-1)
             {
-                rt_kprintf("%s location = %d\n",urctopiccompare,location);
                 location += 19;
+                rt_kprintf("location = %d\n",location);
                 if(buffer[location+0] == 0xAA && buffer[location+1] == 0x55)
                 {
                     for(uint8_t i = location; i < location+7; i ++)
