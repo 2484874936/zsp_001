@@ -79,7 +79,7 @@ int main(void)
 //        set_led();
         static uint32_t heart_wait_cnt = 0,heart_error_cnt = 0;
         heart_wait_cnt ++;
-        if(heart_wait_cnt == 600)
+        if(heart_wait_cnt == 60)
         {
             heart_wait_cnt = 0;
             if(mqtt_heart() == RT_EOK)
@@ -92,7 +92,7 @@ int main(void)
                 heart_error_cnt ++;
                 rt_kprintf("***heart error***\n");
             }
-            if(heart_error_cnt>3)
+            if(heart_error_cnt>1)
             {
                 heart_error_cnt = 0;
                 rt_kprintf("MQTT RECONNECTING...\n");
